@@ -1,0 +1,51 @@
+<Card sx={{ maxWidth: 100+'%' }}>
+			<CardHeader
+					avatar={
+					<Avatar sx={{display: { xs: 'none', sm: 'block' }, bgcolor: grey[100], width: 80, height: 80}} aria-label="recipe">
+						<FaceIcon sx={{ color: grey[500], width: 100+'%', height: 100+'%' }} />
+					</Avatar>
+					}
+					action={
+					<FormControl sx={{m: 1, width: '100%' , minWidth: '100%' }}>
+							<InputLabel id="status-select-label">Status</InputLabel>
+							<Select
+							labelId="status-select-label"
+							id="status-user"
+							value={status}
+							label="Status"
+							onChange={handleChange}
+							>
+							<MenuItem value={"pendiente"}>PENDIENTE</MenuItem>
+							<MenuItem value={"en proceso"}>EN PROCESO</MenuItem>
+							<MenuItem value={"completado"}>COMPLETADO</MenuItem>
+							</Select>
+					</FormControl>
+					}
+					title="Shrimp and Chorizo Paella"
+					subheader="ID:September 14, 2016"
+				/>
+				<CardContent>
+					<Grid container spacing={2}>
+						<Grid item xs={8}>
+							<Typography variant="caption" display="block" gutterBottom component="div">
+							Mail
+						</Typography>
+						<Typography variant="body1" color="text.secondary">
+							mail@mail.com
+						</Typography>
+						</Grid>
+						<Grid item xs={4} sx={{ borderLeft: 2, borderColor: 'grey.200'}}>
+						<Box component="div" sx={{ bgcolor: grey[200], borderRadius: 1, m:3 ,
+							 display: 'flex', flexDirection: 'column', 
+							 alignItems: 'flex-center', p:2}}>
+							<Typography variant="caption" display="block" gutterBottom component="div">
+								Mail
+							</Typography>
+							<Typography variant="body1" color="text.secondary">
+								mail@mail.com
+							</Typography>
+						</Box>
+						</Grid>
+					</Grid>
+				</CardContent>
+		</Card>
