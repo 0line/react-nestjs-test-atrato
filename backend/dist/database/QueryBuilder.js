@@ -59,7 +59,7 @@ class QueryBuilder {
             if (request.limit > 0) {
                 this.page = parseInt(request.page);
                 this.limit = parseInt(request.limit);
-                this.offset = parseInt(this.limit * this.page - this.limit);
+                this.offset = this.limit * this.page - this.limit;
             }
         }
     }

@@ -21,11 +21,16 @@ export class Dashboard extends React.Component {
       orderdirection:'asc',
       page:1,
       limit:2
-
     };
+    this.getUsers = this.getUsers.bind(this);
+  }
+  
+
+  componentDidMount(updateState) {
+    this.getUsers(updateState)
   }
 
-   componentDidMount(updateState) {
+  getUsers(updateState){
     this.setState({
         ...this.state,
         isLoaded: true,
@@ -38,6 +43,7 @@ export class Dashboard extends React.Component {
         .then(res => res.json())
         .then(
             (result) => {
+            console.log(result);
             this.setState({
                 ...this.state,
                 isLoaded: true,
@@ -58,30 +64,8 @@ export class Dashboard extends React.Component {
         ); 
     });
   }
-
-    getUsers(){
-      fetch("http://localhost:5000/users?gsearch=")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          this.setState({
-            isLoaded: true,
-            users: result.data.data
-          });
-        },
-        (error) => {
-          console.log(error);
-           this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
   render() {
     const { error, isLoaded, users } = this.state;
-    console.log(isLoaded);
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -175,7 +159,7 @@ export class Dashboard extends React.Component {
       <Grid container spacing={2} px={8} py={4}>
         {users.map(user => (
             <Grid item sm={6}>
-                <CardUser user={user}></CardUser>
+                <CardUser user={user} updateUsers={this.getUsers}></CardUser>
             </Grid>
         ))}
       </Grid>

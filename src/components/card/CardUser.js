@@ -16,13 +16,15 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import './carduser.css';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import ShareIcon from '@mui/icons-material/Share';
 import UserEditModal from "../UserEditModal/UserEditModal";
 import moment from "moment";
+import DeleteUser from "../DeleteUserModal/deleteusermodal";
 
 export default function CardUser(props) {
 	const user= props.user;
+	const updateUsers = props.updateUsers;
 	const [status, setStatus] = React.useState(user.status);
+
 	const handleChange = (event) => {
 		setStatus(event.target.value);
 		UpdateStatus({id:user.id ,status:event.target.value})
@@ -54,7 +56,7 @@ export default function CardUser(props) {
 
 	
 	return (
-		<Card sx={{ maxWidth: 100+'%', p:3, height: "450px" }}>
+		<Card sx={{ maxWidth: 100+'%', p:3, height: {xs:"500px" ,sm:"450px"} }}>
 			<div className="header-card">
 				<Box component="div" sx={{display: 'flex', flexDirection: 'row', 
 				justifyContent: 'flex-start', alignItems: 'center', alignContent: 'center'}}>
@@ -214,7 +216,7 @@ export default function CardUser(props) {
 					</Grid>
 			</CardContent>
 			<CardActions disableSpacing sx={{
-				display:'flex',
+				display: { xs: 'block', sm: 'flex' },
 				justifyContent: {xs:'center', sm:'flex-end'}, 
 				alignContent: {xs:'center', sm:'flex-end'}, 
 				alignItems: {xs:'center', sm:'flex-end'}
@@ -239,11 +241,8 @@ export default function CardUser(props) {
 							<MenuItem value={"completado"}>COMPLETADO</MenuItem>
 							</Select>
 				</FormControl>
-				<IconButton aria-label="share">
-					<ShareIcon />
-				</IconButton>
+				<DeleteUser user={user} updateUsers={updateUsers}></DeleteUser>
 				<UserEditModal user={user} sx={{display: { xs: 'none', sm: 'flex' }, color:grey[600], mr:10}} text="editar"></UserEditModal>
-
 			</CardActions>
 		</Card>
 	);
